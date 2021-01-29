@@ -36,7 +36,7 @@ const createQueue = () => {
 
     return {
         getSize: function () {
-            return size;
+            return stack2.getSize();
         },
 
         isEmpty: function () {
@@ -78,6 +78,8 @@ queue.enqueue(5);
 queue.enqueue(6);
 console.log(queue.dequeue());
 console.log(queue.peek());
+console.log(queue.getSize());
 console.log(queue.dequeue());
 console.log(queue.dequeue());
 console.log(queue.peek());
+console.log(queue.getSize());
