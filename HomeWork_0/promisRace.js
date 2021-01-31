@@ -21,6 +21,27 @@ function promiseRace(promises) {
     });
 }
 
+function promiseRace1(promise) {
+    let completed = false;
+    return new Promise(function (resolve, reject) {
+        for (let i = 0; i < promise.length; i++) {
+            promise[i]
+                .then((result) => {
+                    if (!completed) {
+                        resolve(result);
+                        completed = true;
+                    }
+                })
+                .catch(((error => {
+                    if (!completed) {
+                        reject(error);
+                        completed = true;
+                    }
+                })))
+        }
+    })
+}
+
 let a = new Promise((resolve, reject) => {
     setTimeout(() =>
         resolve('A'), 3000);
