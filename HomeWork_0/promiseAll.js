@@ -14,7 +14,8 @@ let c = new Promise((resolve, reject) => {
 });
 
 let d = new Promise((resolve, reject) => {
-    reject(('This promise is rejected'));
+    setTimeout(() =>
+        reject(('This promise is rejected')), 1000)
 });
 
 

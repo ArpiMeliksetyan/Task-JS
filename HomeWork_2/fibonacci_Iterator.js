@@ -2,13 +2,14 @@ let fibonacci = {
     [Symbol.iterator]() {
         let first = 0;
         let second = 1;
-        console.log(first);
-        console.log(second);
+        let third = first + second;
         return {
             next() {
-                let third = first + second;
+
                 first = second;
                 second = third;
+                third = first + second;
+
                 return {
                     done: false,
                     value: third,
@@ -19,6 +20,23 @@ let fibonacci = {
         }
     }
 }
+
+
+
+function* fib(max) {
+    let first = 1;
+    let second = 0;
+    let third = first + second;
+    for (let i = third; third <= max; i++) {
+        yield third;
+        first = second;
+        second = third;
+        third = first + second;
+    }
+}
+
+
+
 
 for (let value of fibonacci) {
     if (value > 25) {
