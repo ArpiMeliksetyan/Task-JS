@@ -8,3 +8,5 @@ Account.prototype.sayWelcome = function (user) {
         console.log(`Hello dear ${user.name}`);
 }
 
+module.exports = Account;
+

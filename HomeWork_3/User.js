@@ -1,3 +1,5 @@
+const Account = require("./Account")
+
 function User(username, password, isAdmin, name, surname, id) {
     Account.call(this, username, password, isAdmin)
     this.name = name;

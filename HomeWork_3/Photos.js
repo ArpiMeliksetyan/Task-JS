@@ -1,3 +1,4 @@
+const Media = require("./Media")
 
 function Photo(picture, description, user, size, isOfficial) {
     Media(this, description, size, user);

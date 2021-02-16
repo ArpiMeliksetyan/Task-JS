@@ -7,3 +7,5 @@ function Media(user, description, size) {
 Media.prototype.renameDescription = function(newDescription){
     this.description = newDescription;
 }
+
+module.exports = Media;

@@ -1,3 +1,4 @@
+const Media = require("./Media")
 function Video(video, description, size, user, quality) {
     Media(this, description, size);
     this.video = video;
