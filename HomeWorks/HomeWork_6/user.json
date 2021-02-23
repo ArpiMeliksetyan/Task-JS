@@ -1,0 +1,46 @@
+[
+  {
+    "id": 3,
+    "firstName": "Karen",
+    "lastName": "Antonyan",
+    "password": "258963147",
+    "username": "AK",
+    "email": "karen@mail.ru",
+    "phone": "033456123"
+  },
+  {
+    "id": 4,
+    "firstName": "Karen",
+    "lastName": "Antonyan",
+    "password": "258963147",
+    "username": "Karen",
+    "email": "karen@mail.ru",
+    "phone": "033456123"
+  },
+  {
+    "id": 1,
+    "firstName": "Arpi",
+    "lastName": "an",
+    "password": "25",
+    "username": "Ak",
+    "email": "arpi@mail.ru0",
+    "phone": "012000111"
+  },
+  {
+    "id": 5,
+    "firstName": "Arsen",
+    "lastName": "Antonyan",
+    "password": "258963147",
+    "username": "Arsen",
+    "email": "karen@mail.ru",
+    "phone": "033456123"
+  },
+  {
+    "id": 7,
+    "firstName": "Alinchik",
+    "password": "111111",
+    "username": "bbb",
+    "email": "Alinka@mail.ru",
+    "phone": "010620513"
+  }
+]
