@@ -1,14 +1,5 @@
 [
   {
-    "id": 3,
-    "firstName": "Karen",
-    "lastName": "Antonyan",
-    "password": "258963147",
-    "username": "AK",
-    "email": "karen@mail.ru",
-    "phone": "033456123"
-  },
-  {
     "id": 4,
     "firstName": "Karen",
     "lastName": "Antonyan",
@@ -28,19 +19,11 @@
   },
   {
     "id": 5,
-    "firstName": "Arsen",
-    "lastName": "Antonyan",
+    "firstName": "789456",
+    "lastName": "0000",
     "password": "258963147",
-    "username": "Arsen",
+    "username": "Akkkk",
     "email": "karen@mail.ru",
     "phone": "033456123"
-  },
-  {
-    "id": 7,
-    "firstName": "Alinchik",
-    "password": "111111",
-    "username": "bbb",
-    "email": "Alinka@mail.ru",
-    "phone": "010620513"
   }
 ]

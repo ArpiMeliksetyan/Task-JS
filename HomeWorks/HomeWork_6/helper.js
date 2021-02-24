@@ -16,39 +16,8 @@ function saveUser(user) {
     fs.writeFileSync('./user.json', dataJSON);
 }
 
-function checkingUpdatedFields(id, firstName, lastName, password, username, email, phone) {
-    const userData = readUser();
-    const user = userData.find(user => user.id === id);
-    if (user) {
-        for (let key in user) {
-            if (user.firstName !== firstName) {
-                user.firstName = firstName;
-            } else if (user.lastName !== lastName) {
-                user.lastName = lastName;
-            } else if (user.password !== password) {
-                user.password = password;
-            } else if (user.username !== username) {
-                let duplicate = userData.find(user => user.username === username);
-                if (!duplicate) {
-                    user.username = username;
-                } else {
-                    console.log("There are such username, please choose another one");
-                    break;
-                }
-            } else if (user.email !== email) {
-                user.email = email;
-            } else if (user.phone !== phone) {
-                user.phone = phone;
-            }
-        }
-
-    } else {
-        console.log(`There are not such user with id: ${id}`)
-    }
-    return user;
-}
-
 function pushUser(path, id, firstName, lastName, password, username, email, phone) {
+
     let userData = readUser();
     let duplicate = userData.find(user => user.username === username);
     if (!duplicate) {
@@ -62,7 +31,6 @@ function pushUser(path, id, firstName, lastName, password, username, email, phon
                 email: email,
                 phone: phone,
             });
-
             saveUser(userData);
         }
     } else {
@@ -70,28 +38,27 @@ function pushUser(path, id, firstName, lastName, password, username, email, phon
     }
 }
 
-
-function pushExistingUser(path, id, firstName, lastName, password, username, email, phone) {
+function deleteUserForUpdate(id) {
     let userData = readUser();
-    if (fs.existsSync(path)) {
-        userData.push({
-            id: id,
-            firstName: firstName,
-            lastName: lastName,
-            password: password,
-            username: username,
-            email: email,
-            phone: phone,
-        });
-
-        saveUser(userData);
+    const userToKeep = userData.filter(user => user.id !== id);
+    if (userData.length !== userToKeep.length) {
+        saveUser(userToKeep);
     }
+}
+
+function addById(id, user) {
+    let path = './user.json'
+    pushUser(path, id, user.firstName, user.lastName, user.password, user.username, user.email, user.phone);
+}
+function parseId(urlParse) {
+    return parseInt(urlParse.pathname.split('/').slice(-1).pop());
 }
 
 module.exports = {
     read: readUser,
     save: saveUser,
-    update: checkingUpdatedFields,
     push: pushUser,
-    pushUpdated: pushExistingUser,
+    addById,
+    deleteUserForUpdate,
+    parseId,
 }

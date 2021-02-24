@@ -9,8 +9,8 @@ function deleteUser(id) {
     repo.delete(id);
 }
 
-function updateUser(id, firstName, lastName, password, username, email, phone) {
-    repo.update(id, firstName, lastName, password, username, email, phone)
+function updateUser(id, updatedFields) {
+    repo.update(id, updatedFields)
 }
 
 function getAllUsers() {
@@ -21,12 +21,15 @@ function getUserById(id){
     return repo.find(id);
 }
 
+function searchByText(text){
+    return repo.search(text);
+}
+
 module.exports = {
-    getAllUsers: getAllUsers,
-    createUser: createUser,
-    updateUser: updateUser,
-    deleteUser: deleteUser,
-    getUserById: getUserById,
-
-
+    getAllUsers,
+    createUser,
+    updateUser,
+    deleteUser,
+    getUserById,
+    searchByText,
 }

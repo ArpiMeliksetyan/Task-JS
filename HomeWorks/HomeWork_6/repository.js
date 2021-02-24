@@ -6,11 +6,7 @@ function addUser(firstName, lastName, password, username, email, phone) {
     let ids = userData.map(user => user.id);
     let id = Math.max(...ids) + 1;
     helper.push(path, id, firstName, lastName, password, username, email, phone);
-}
-
-function updateUserById(id, firstName, lastName, password, username, email, phone) {
-    let path = './user.json'
-    helper.pushUpdated(path, id, firstName, lastName, password, username, email, phone);
+    console.log(`You added a user with id: ${id}`)
 }
 
 function deleteUser(id) {
@@ -18,15 +14,33 @@ function deleteUser(id) {
     const userToKeep = userData.filter(user => user.id !== id);
     if (userData.length !== userToKeep.length) {
         helper.save(userToKeep);
+        console.log(`The user with id: ${id} is removed successfully`);
     } else {
         console.log(`There are not such user with id: ${id}`);
     }
 }
 
-function updateUserInfo(id, firstName, lastName, password, username, email, phone) {
-    const updatedUser = helper.update(id, firstName, lastName, password, username, email, phone);
-    deleteUser(id);
-    updateUserById(id, updatedUser.firstName, updatedUser.lastName, updatedUser.password, updatedUser.username, updatedUser.email, updatedUser.phone)
+function updateUserById(id, updatedFields) {
+    const userData = helper.read();
+    const user = userData.find(user => user.id === id);
+    if (user) {
+        for (let key in user) {
+            if (key in updatedFields) {
+                user[key] = updatedFields[key];
+            }
+        }
+        const duplicate = userData.find(userData => userData.username === user.username && userData.id !== user.id);
+        if (!duplicate) {
+            helper.deleteUserForUpdate(id);
+            helper.addById(id, user);
+            console.log('You successfully updated user info')
+        } else {
+            console.log('This username is used by another user, please choose another one');
+        }
+
+    } else {
+        console.log(`There are not such user with id: ${id}`)
+    }
 }
 
 function findById(id) {
@@ -39,15 +53,16 @@ function findById(id) {
     return user;
 }
 
+function searchByText(text){
+    let userData = helper.read();
+    let users = userData.filter(user=> user.firstName.includes(text));
+    return users;
+}
 module.exports = {
     add: addUser,
     delete: deleteUser,
-    update: updateUserInfo,
+    update: updateUserById,
     find: findById,
+    search: searchByText
 }
 
-// readUserInfo("ArpiMeliksetyan", "123456");
-// addUser('Ani', 'Antonyan', '258963147', 'Arsen', 'karen@mail.ru', '033456123');
-// deleteUser(3);
-// updateUserInfo(6, 'Anka', "an", "25", 'Ak', 'arpi@mail.ru0', '777');
-// console.log(findById(0));

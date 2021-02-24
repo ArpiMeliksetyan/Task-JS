@@ -1,31 +1,37 @@
 const http = require('http');
 const url = require('url');
 const controller = require('./controller');
-const querystring = require('querystring');
+const helper = require('./helper');
+let baseUrl = '/api/v1/users';
 
-
-const server = http.createServer((req, res) => {
+http.createServer((req, res) => {
 
         const urlParse = url.parse(req.url, true);
-        let id = parseInt(urlParse.path.split('?')[1]);
 
-        if (urlParse.pathname === '/get' && req.method === 'GET') {
+
+        if (urlParse.pathname === baseUrl && req.method === 'GET') {
             controller.getAllUsers(req, res);
-        } else if (urlParse.pathname === '/delete/' && req.method === 'DELETE') {
+        } else if (urlParse.pathname.startsWith(baseUrl + '/') && req.method === 'GET') {
+            let id = helper.parseId(urlParse);
+            controller.findById(req, res, id);
+        } else if (urlParse.pathname.startsWith(baseUrl + '/') && req.method === 'PUT') {
+            let id = helper.parseId(urlParse);
+            req.on('data', body => {
+                controller.updateUser(req, res, body.toString(),id)
+            });
+        } else if (urlParse.pathname .startsWith(baseUrl + '/') && req.method === 'DELETE') {
+            let id = helper.parseId(urlParse);
             controller.deleteUser(req, res, id)
-        } else if (urlParse.pathname === '/add' && req.method === 'POST') {
+        } else if (urlParse.pathname === baseUrl && req.method === 'POST') {
             req.on('data', body => {
                 controller.createUser(req, res, body.toString())
             });
-
-        } else if(urlParse.pathname === '/update' && req.method === 'PUT'){
-            req.on('data', body => {
-                controller.updateUser(req, res, body.toString())
-            });
-        } else if(urlParse.pathname === '/get/' && req.method === 'GET'){
-            controller.findById(req,res,id);
+        } else if(urlParse.pathname.startsWith(baseUrl + '?') && req.method === 'GET'){
+            console.log(1);
+            let text = urlParse.query;
+            controller.searchByText(req,res,text)
         }
     }
-).listen(3000, () => {
-    console.log("Hello");
+).listen(process.env.PORT || 3000, () => {
+    console.log("Server is running");
 });
