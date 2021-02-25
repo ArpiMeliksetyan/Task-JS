@@ -1,0 +1,29 @@
+[
+  {
+    "id": 4,
+    "firstName": "Karen",
+    "lastName": "Antonyan",
+    "password": "258963147",
+    "username": "Karen",
+    "email": "karen@mail.ru",
+    "phone": "033456123"
+  },
+  {
+    "id": 1,
+    "firstName": "Arpi",
+    "lastName": "Meliksetyan",
+    "password": "25",
+    "username": "Ak",
+    "email": "arpi@mail.ru0",
+    "phone": "012000111"
+  },
+  {
+    "id": 6,
+    "firstName": "David",
+    "lastName": "Azatyan",
+    "password": "25",
+    "username": "DA",
+    "email": "dav@mail.ru0",
+    "phone": "7979797979"
+  }
+]
