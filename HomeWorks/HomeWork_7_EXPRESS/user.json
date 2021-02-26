@@ -2,24 +2,24 @@
   {
     "id": 4,
     "firstName": "Karen",
-    "lastName": "Antonyan",
+    "lastName": "Margaryan",
     "password": "258963147",
     "username": "Karen",
     "email": "karen@mail.ru",
     "phone": "033456123"
   },
   {
-    "id": 1,
-    "firstName": "Arpi",
-    "lastName": "Meliksetyan",
-    "password": "25",
-    "username": "Ak",
-    "email": "arpi@mail.ru0",
-    "phone": "012000111"
+    "id": 7,
+    "firstName": "Karen",
+    "lastName": "Margaryan",
+    "password": "258963147",
+    "username": "Karenchik",
+    "email": "karen@mail.ru",
+    "phone": "033456123"
   },
   {
     "id": 6,
-    "firstName": "David",
+    "firstName": "Karen7",
     "lastName": "Azatyan",
     "password": "25",
     "username": "DA",

@@ -5,8 +5,12 @@ function addUser(firstName, lastName, password, username, email, phone) {
     let path = './user.json'
     let ids = userData.map(user => user.id);
     let id = Math.max(...ids) + 1;
-    helper.push(path, id, firstName, lastName, password, username, email, phone);
-    console.log(`You added a user with id: ${id}`)
+    let addedUser = helper.push(path, id, firstName, lastName, password, username, email, phone);
+    if (addedUser) {
+        console.log(`You added a user with id: ${id}`);
+        return addedUser;
+    }
+    return null;
 }
 
 function deleteUser(id) {
@@ -14,9 +18,10 @@ function deleteUser(id) {
     const userToKeep = userData.filter(user => user.id !== id);
     if (userData.length !== userToKeep.length) {
         helper.save(userToKeep);
-        console.log(`The user with id: ${id} is removed successfully`);
+        return `The user with id: ${id} is removed successfully`;
     } else {
         console.log(`There are not such user with id: ${id}`);
+        return null;
     }
 }
 
@@ -33,13 +38,14 @@ function updateUserById(id, updatedFields) {
         if (!duplicate) {
             helper.deleteUserForUpdate(id);
             helper.addById(id, user);
-            console.log('You successfully updated user info')
+            return 'You successfully updated user info'
         } else {
             console.log('This username is used by another user, please choose another one');
         }
 
     } else {
         console.log(`There are not such user with id: ${id}`)
+        return user;
     }
 }
 
@@ -47,17 +53,20 @@ function findById(id) {
     let userData = helper.read();
     let user = userData.find(user => user.id === id);
     if (!user) {
-        return `There are no such user with id: ${id}`
+        console.log(`There are no such user with id: ${id}`)
     }
-    console.log(user);
     return user;
 }
 
-function searchByText(text){
+function searchByText(text) {
     let userData = helper.read();
-    let users = userData.filter(user=> user.firstName.includes(text));
-    return users;
+    let users = userData.filter(user => user.firstName.includes(text));
+    if (users.length > 0) {
+        return users;
+    }
+    return null;
 }
+
 module.exports = {
     add: addUser,
     delete: deleteUser,

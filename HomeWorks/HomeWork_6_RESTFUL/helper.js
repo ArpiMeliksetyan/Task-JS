@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+
 function readUser() {
     try {
         let dataBuffer = fs.readFileSync('./user.json');
@@ -7,9 +8,12 @@ function readUser() {
         let data = JSON.parse(jsonData);
         return data;
     } catch (error) {
+        console.log(error)
         return [];
     }
 }
+
+
 
 function saveUser(user) {
     const dataJSON = JSON.stringify(user);
@@ -32,9 +36,11 @@ function pushUser(path, id, firstName, lastName, password, username, email, phon
                 phone: phone,
             });
             saveUser(userData);
+            return 'User info is saved'
         }
     } else {
         console.log('This username is used by another user, please choose another one');
+        return null;
     }
 }
 

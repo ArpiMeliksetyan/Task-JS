@@ -6,17 +6,16 @@ function getAllUsers() {
 }
 
 function deleteUser(id) {
-    service.deleteUser(id);
+    return service.deleteUser(id);
 
 }
 
 function createUser(body) {
-    // let body1 = JSON.parse(body);
-    service.createUser(body.firstName, body.lastName, body.password, body.username, body.email, body.phone);
+    return service.createUser(body.firstName, body.lastName, body.password, body.username, body.email, body.phone);
 }
 
 function updateUser(body, id) {
-    service.updateUser(id, body);
+  return service.updateUser(id, body);
 }
 
 function findById(id) {
@@ -26,7 +25,9 @@ function findById(id) {
 
 function searchByText(text) {
     let users = service.searchByText(text);
-    return JSON.stringify(users);
+    if (users) {
+        return JSON.stringify(users);
+    }
 }
 
 module.exports = {

@@ -2,15 +2,15 @@ const repo = require('./repository');
 const helper = require('./helper')
 
 function createUser(firstName, lastName, password, username, email, phone) {
-    repo.add(firstName, lastName, password, username, email, phone);
+   return repo.add(firstName, lastName, password, username, email, phone);
 }
 
 function deleteUser(id) {
-    repo.delete(id);
+    return repo.delete(id);
 }
 
 function updateUser(id, updatedFields) {
-    repo.update(id, updatedFields)
+   return repo.update(id, updatedFields);
 }
 
 function getAllUsers() {

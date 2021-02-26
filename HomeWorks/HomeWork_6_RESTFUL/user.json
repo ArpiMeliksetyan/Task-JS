@@ -1,14 +1,5 @@
 [
   {
-    "id": 4,
-    "firstName": "Karen",
-    "lastName": "Antonyan",
-    "password": "258963147",
-    "username": "Karen",
-    "email": "karen@mail.ru",
-    "phone": "033456123"
-  },
-  {
     "id": 1,
     "firstName": "Arpi",
     "lastName": "an",
