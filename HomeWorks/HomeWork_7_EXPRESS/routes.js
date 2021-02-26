@@ -46,7 +46,7 @@ appRouter.put((`/:id`), (req, res) => {
 appRouter.post(`/`, (req, res) => {
     let newUser = service.createUser(req.body);
     if (newUser) {
-        res.status(200).send(newUser);
+        res.status(201).send(newUser);
     } else {
         res.status(500);
     }
